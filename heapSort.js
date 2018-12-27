@@ -1,12 +1,12 @@
 const heapSort = (arr) => {
 	buildMaxHeap(arr, arr.length);
-	// let n = arr.length;
-	// for(let i = n-1; i >= 0; i--) {
-	// 	let temp = arr[i];
-	// 	arr[i] = arr[0];
-	// 	arr[0] = temp;
-	// 	heapify(arr, 0, i);
-	// }
+	let n = arr.length;
+	for(let i = n-1; i >= 0; i--) {
+		let temp = arr[i];
+		arr[i] = arr[0];
+		arr[0] = temp;
+		heapify(arr, 0, i);
+	}
 	return arr;
 }
 
