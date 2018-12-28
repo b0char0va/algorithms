@@ -33,7 +33,7 @@ class Tree {
 			}
 		}
 	}
-	search(val) {
+	recursiveDepthFirstSearch(val) {
 		if (this.root === null) {
 			return null;
 		} else {
@@ -50,23 +50,43 @@ class Tree {
 			return helper(this.root);
 		}
 	}
-	breadthFirstTraverse() {
+	breadthFirstSearch(val) {
 		if(this.root === null) {
 			return [];
 		}
-		let result = [this.root.value];
 		let queue = [this.root];
 		while(queue.length > 0) {
 			let currentNode = queue[0];
+			if(currentNode.value === val) {
+				return currentNode;
+			}
 			if(currentNode.left !== null) {
-				result.push(currentNode.left.value);
 				queue.push(currentNode.left);
 			} 
 			if(currentNode.right !== null) {
-				result.push(currentNode.right.value);
 				queue.push(currentNode.right);
 			}
 			queue.shift();
+		}
+		return null;
+	}
+	depthFirstSearch(val) {
+		if(this.root === null) {
+			return [];
+		}
+		let stack = [this.root];
+		let result = [this.root.value];
+		while(stack.length > 0) {
+			let currentNode = stack.pop();
+			if(currentNode.value === val) {
+				return currentNode;
+			}
+			if(currentNode.right !== null) {
+				stack.push(currentNode.right);
+			} 
+			if(currentNode.left !== null) {
+				stack.push(currentNode.left);
+			}
 		}
 		return result;
 	}
@@ -78,5 +98,6 @@ tree.insert(2);
 tree.insert(5);
 tree.insert(8);
 tree.insert(9);
-console.log(tree.breadthFirstTraverse());
-console.log(tree.search(10));
+console.log(tree.breadthFirstSearch(5));
+console.log(tree.depthFirstSearch(2));
+console.log(tree.recursiveDepthFirstSearch(10));
