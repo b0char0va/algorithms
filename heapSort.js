@@ -36,4 +36,4 @@ const heapify = (arr, i, n) => {
 	}
 }
 
-console.log(heapSort([9,2,3,1,5,7,6]));
+console.log(heapSort([2,9,3,1,5,7,6]));
