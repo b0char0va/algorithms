@@ -90,6 +90,36 @@ class Tree {
 		}
 		return result;
 	}
+	delete(val) {
+		let helper = (val, node) => {
+			if(node.value === null) {
+				return node;
+			} 
+			if(node.value > val) {
+				node.left = helper(val, node.left);
+			} else if (node.value < val) {
+				node.right = helper(val, node.right);
+			} else {
+				if (node.left === null) {
+					return node.right;
+				}else if (node.right === null) {
+					return node.left;
+				}
+				node.value = this.minValueNode(node.right);
+				node.right = helper(node.value, node.right);
+			}
+			return node;
+		}
+		return helper(val, this.root);
+	}
+	minValueNode(node) {
+		let minVal = node.value;
+		while(node.left !== null) {
+			minVal = node.left.value;
+			node = node.left;
+		}
+		return minVal;
+	}
 }
 
 let tree = new Tree();
@@ -99,5 +129,7 @@ tree.insert(5);
 tree.insert(8);
 tree.insert(9);
 console.log(tree.breadthFirstSearch(5));
-console.log(tree.depthFirstSearch(2));
-console.log(tree.recursiveDepthFirstSearch(10));
+console.log(tree.delete(5, tree.root));
+console.log(tree.breadthFirstSearch(5));
+// console.log(tree.depthFirstSearch(2));
+// console.log(tree.recursiveDepthFirstSearch(10));
