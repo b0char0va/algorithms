@@ -46,6 +46,22 @@ class LinkedList{
 			current = current.next;
 		}
 	}
+	traverse(callback) {
+		let current = this.head;
+		while(current) {
+			callback(current);
+			current = current.next;
+		}
+	}
+	print() {
+		let string = '';
+		let current = this.head;
+		while(current) {
+			string += current.value + ' ';
+			current = current.next;
+		}
+		console.log(string.trim());
+	}
 }
 
 
@@ -53,7 +69,9 @@ let list = new LinkedList;
 list.add(5);
 list.add(6);
 list.add(7);
-list.remove(5);
-list.remove(7);
-list.remove(6);
-console.log(list);
+// list.remove(5);
+// list.remove(7);
+// list.remove(6);
+// list.traverse((node) => { return node.value*=2;});
+list.print();
+// console.log(list);
