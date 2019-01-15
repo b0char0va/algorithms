@@ -23,11 +23,9 @@ const heapify = (arr, i, n) => {
 	if(left < n && arr[left] > arr[i]) {
 		max = left;
 	}
-
 	if(right < n && arr[right] > arr[max]) {
 		max = right;
 	}
-
 	if(max !== i) {
 		let temp = arr[i];
 		arr[i] = arr[max];
