@@ -31,21 +31,21 @@ class hashTable {
 
 	add(key, value) {
 		let hash = this.calculateHash(key);
-		if(!this.value[hash]) {
-			if(this.numberOfValues === this.size) {
+		if (!this.value[hash]) {
+			if (this.numberOfValues === this.size) {
 				return;
 			}
 			this.value[hash] = new LinkedList;
 		} 
 		let node = new Node(key, value);
 		let current = this.value[hash];
-		if(current.head === null) {
+		if (current.head === null) {
 			current.head = node;
 			current.tail = node;
 		} else {
 			let current = this.value[hash].head;
-			while(current) {
-				if(current[key]) {
+			while (current) {
+				if (current[key]) {
 					current[key] = value;
 					console.log(current);
 					return;
@@ -61,12 +61,12 @@ class hashTable {
 
 	search(key) {
 		let hash = this.calculateHash(key);
-		if(!this.value[hash]) {
+		if (!this.value[hash]) {
 			return null;
 		} else {
 			let current = this.value[hash].head;
-			while(current) {
-				if(current[key]) {
+			while (current) {
+				if (current[key]) {
 					return current[key];
 				}
 				current = current.next;
@@ -77,13 +77,13 @@ class hashTable {
 
 	remove(key) {
 		let hash = this.calculateHash(key);
-		if(!this.value[hash]) {
+		if (!this.value[hash]) {
 			return null;
 		} else {
 			let current = this.value[hash].head;
 			let previous = this.value[hash].head;
-			while(current) {
-				if(current[key]) {
+			while (current) {
+				if (current[key]) {
 					if (current === this.value[hash].head && current === this.value[hash].tail) {
 						delete this.value[hash];
 						this.size--;
