@@ -45,18 +45,33 @@ class Graph {
       return this.vertices.length;
    }
 
+   // dfsTraverse() {
+   //    let result = [];
+   //    let visited = [];
+   //    let helper = (array, vertex) => {
+   //       if(!visited[vertex]){
+   //          visited[vertex] = true;
+   //          result.push(vertex);
+   //       } else {
+   //          return;
+   //       }
+   //       for(let i = 0; i < array.length; i++) {
+   //          helper(this.edges[array[i]], array[i]);
+   //       }
+   //    }
+   //    helper(this.edges[this.vertices[0]], this.vertices[0]);
+   //    return result;
+   // }
    dfsTraverse() {
       let result = [];
       let visited = [];
       let helper = (array, vertex) => {
-         if(!visited[vertex]){
-            visited[vertex] = true;
-            result.push(vertex);
-         } else {
-            return;
-         }
+         visited[vertex] = true;
+         result.push(vertex);
          for(let i = 0; i < array.length; i++) {
-            helper(this.edges[array[i]], array[i]);
+            if(!visited[array[i]]){
+               helper(this.edges[array[i]], array[i]);
+            }
          }
       }
       helper(this.edges[this.vertices[0]], this.vertices[0]);
@@ -86,16 +101,14 @@ class Graph {
 
 let graph = new Graph;
 graph.addVertices(6);
-// graph.addVertices(4);
+graph.addVertices(4);
 graph.addVertices(3);
 graph.addVertices(2);
 graph.addVertices(5);
 graph.addVertices(1);
-// graph.addEdges(6,4);
-// graph.addEdges(4,3);
-// graph.addEdges(4,5);
-graph.addEdges(6,3);
-graph.addEdges(6,5);
+graph.addEdges(6,4);
+graph.addEdges(4,3);
+graph.addEdges(4,5);
 graph.addEdges(2,1);
 graph.addEdges(5,2);
 graph.addEdges(3,2);
@@ -103,4 +116,4 @@ graph.addEdges(3,2);
 // graph.removeEdge(1,5);
 console.log(graph);
 // console.log(graph.dfsTraverse());
-console.log(graph.bfsTraverse());
+console.log(graph.dfsTraverse());
