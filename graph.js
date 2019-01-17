@@ -68,14 +68,13 @@ class Graph {
       let queue = [this.edges[this.vertices[0]]];
 
       while(queue.length > 0) {
-         let current = queue[0].shift();
-         if(queue[0].length === 0) {
-            queue.splice(0,1);
-         }
-         if(!visited[current]) {
-            visited[current] = true;
-            result.push(current);
-            queue.push(this.edges[current]);
+         let current = queue.shift();
+         for(let i = 0; i < current.length; i++) {
+            if(!visited[current[i]]) {
+               visited[current[i]] = true;
+               result.push(current[i]);
+               queue.push(this.edges[current[i]]);
+            }
          }
       }
       return result;
@@ -83,20 +82,22 @@ class Graph {
 }
 
 let graph = new Graph;
-graph.addVertices(6);
-graph.addVertices(4);
-graph.addVertices(3);
-graph.addVertices(2);
-graph.addVertices(5);
 graph.addVertices(1);
-graph.addEdges(6,4);
-graph.addEdges(4,3);
+graph.addVertices(2);
+graph.addVertices(3);
+graph.addVertices(4);
+graph.addVertices(5);
+graph.addVertices(6);
+graph.addEdges(1,2);
+graph.addEdges(1,5);
+graph.addEdges(2,3);
+graph.addEdges(2,5);
+graph.addEdges(3,4);
 graph.addEdges(4,5);
-graph.addEdges(2,1);
-graph.addEdges(5,2);
-graph.addEdges(3,2);
+graph.addEdges(4,6);
 // graph.removeVertices(2);
 // graph.removeEdge(1,5);
+// console.log(graph);
+console.log(graph.bfsTraverse());
 console.log(graph);
-// console.log(graph.dfsTraverse());
 console.log(graph.dfsTraverse());
