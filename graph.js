@@ -45,23 +45,6 @@ class Graph {
       return this.vertices.length;
    }
 
-   // dfsTraverse() {
-   //    let result = [];
-   //    let visited = [];
-   //    let helper = (array, vertex) => {
-   //       if(!visited[vertex]){
-   //          visited[vertex] = true;
-   //          result.push(vertex);
-   //       } else {
-   //          return;
-   //       }
-   //       for(let i = 0; i < array.length; i++) {
-   //          helper(this.edges[array[i]], array[i]);
-   //       }
-   //    }
-   //    helper(this.edges[this.vertices[0]], this.vertices[0]);
-   //    return result;
-   // }
    dfsTraverse() {
       let result = [];
       let visited = [];
