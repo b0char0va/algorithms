@@ -61,23 +61,72 @@ class Graph {
       return result;
    }
 
+   // bfsTraverse() {
+   //    let result = [this.vertices[0]];
+   //    let visited = [];
+   //    visited[this.vertices[0]] = true;
+   //    let queue = [this.edges[this.vertices[0]]];
+
+   //    while(queue.length > 0) {
+   //       let current = queue.shift();
+   //       for(let i = 0; i < current.length; i++) {
+   //          if(!visited[current[i]]) {
+   //             visited[current[i]] = true;
+   //             result.push(current[i]);
+   //             queue.push(this.edges[current[i]]);
+   //          }
+   //       }
+   //    }
+   //    return result;
+   // }
+
    bfsTraverse() {
       let result = [this.vertices[0]];
       let visited = [];
       visited[this.vertices[0]] = true;
-      let queue = [this.edges[this.vertices[0]]];
+      let queue = [this.vertices[0]];
 
-      while(queue.length > 0) {
+      while(queue.length !== 0) {
          let current = queue.shift();
-         for(let i = 0; i < current.length; i++) {
-            if(!visited[current[i]]) {
-               visited[current[i]] = true;
-               result.push(current[i]);
-               queue.push(this.edges[current[i]]);
+         for(let i = 0; i < this.edges[current].length; i++) {
+            if(!visited[this.edges[current][i]]) {
+               visited[this.edges[current][i]] = true;
+               result.push(this.edges[current][i]);
+               queue.push(this.edges[current][i]);
             }
          }
       }
       return result;
+   }
+
+   shortestPath(v1,v2) {
+      let paths = [];
+      let queue = [];
+      let visited = [];
+      queue.push(v1);
+      visited[v1] = true;
+
+      while(queue.length !== 0) {
+         let current = queue.shift();
+         for (let i = 0; i < this.edges[current].length; i++) {
+            if (!visited[this.edges[current][i]]) {
+               visited[this.edges[current][i]] = true;
+               queue.push(this.edges[current][i]);
+               paths[this.edges[current][i]] = current;
+            }
+         }
+      }
+      if (!visited[v2]) {
+         return null;
+      } 
+      let path = [];
+      let j = v2;
+      while (j !== v1) {
+         path.push(j);
+         j = paths[j];
+      }
+      path.push(j);
+      return path.reverse();
    }
 }
 
@@ -98,6 +147,7 @@ graph.addEdges(4,6);
 // graph.removeVertices(2);
 // graph.removeEdge(1,5);
 // console.log(graph);
-console.log(graph.bfsTraverse());
-console.log(graph);
-console.log(graph.dfsTraverse());
+// console.log(graph.bfsTraverse());
+// console.log(graph);
+// console.log(graph.dfsTraverse());
+console.log(graph.shortestPath(1,6));
